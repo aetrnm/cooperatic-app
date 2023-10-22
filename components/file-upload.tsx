@@ -15,8 +15,24 @@ interface FileUploadProps {
 
 export const FileUpload = ({ onChange, value, endpoint }: FileUploadProps) => {
   const fileType = value?.split(".").pop();
+  const isVideo = ["mp4", "webm", "ogg", "mov", "avi", "wmv", "flv"].some(
+    (type) => fileType === type && value
+  );
+  const isPDF = fileType === "pdf" && value;
+  const isImage = !isPDF && !isVideo && value;
 
-  if (value && fileType !== "pdf") {
+  if (isVideo) {
+    return (
+      <div className="relative h-40">
+        <video controls className="object-cover h-full rounded-xl">
+          <source src={value || ""} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    );
+  }
+
+  if (isImage) {
     return (
       <div className="relative h-20 w-20">
         <Image fill src={value} alt="Upload" className="rounded-full" />
@@ -31,7 +47,7 @@ export const FileUpload = ({ onChange, value, endpoint }: FileUploadProps) => {
     );
   }
 
-  if (value && fileType === "pdf") {
+  if (isPDF) {
     return (
       <div className="relative flex items-center p-2 mt-2 rounded-md bg-background/10">
         <FileIcon className="h-10 w-10" />
