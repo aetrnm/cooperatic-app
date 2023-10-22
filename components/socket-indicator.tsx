@@ -9,7 +9,7 @@ export const SocketIndicator = () => {
   if (!isConnected) {
     return (
       <Badge variant="outline" className="bg-red-600 text-white border-none">
-        Not connected. Trying to reconnect every 1s
+        Not connected. Trying to reconnect...
       </Badge>
     );
   }
