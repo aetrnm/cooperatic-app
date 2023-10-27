@@ -2,7 +2,7 @@ import { redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 import { db } from "@/lib/db";
-import { getOrCreateConversation } from "@/lib/conversation";
+import { findOrCreateConversation } from "@/lib/conversation";
 import { currentProfile } from "@/lib/current-profile";
 import { ChatHeader } from "@/components/chat/chat-header";
 import { ChatMessages } from "@/components/chat/chat-messages";
@@ -44,7 +44,7 @@ const MemberIdPage = async ({ params, searchParams }: MemberIdPageProps) => {
     return redirect(`/groups/${params.groupId}`);
   }
 
-  const conversation = await getOrCreateConversation(
+  const conversation = await findOrCreateConversation(
     currentMember.id,
     params.memberId
   );
