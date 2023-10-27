@@ -40,7 +40,6 @@ export const ChatMessages = ({
   socketQuery,
   paramKey,
   paramValue,
-  type,
 }: ChatMessagesProps) => {
   const queryKey = `chat:${chatId}`;
   const addKey = `chat:${chatId}:messages`;
