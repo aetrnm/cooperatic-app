@@ -75,7 +75,7 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
                     placeholder="Write a message..."
                     {...field}
                     spellCheck={true}
-                    autoComplete="on"
+                    autoComplete="off"
                     autoCorrect="on"
                     autoCapitalize="on"
                   />
